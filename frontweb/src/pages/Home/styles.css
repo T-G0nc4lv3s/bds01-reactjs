@@ -82,8 +82,7 @@
 }
 
 @media (min-width: 992px) {
-
-  .home-container{
+  .home-container {
     font-size: 55px;
     padding: 40px;
   }
@@ -100,9 +99,34 @@
     width: 700px;
     margin-bottom: 26px;
   }
-  
+
   .home-content-container p {
     width: 700px;
     margin-bottom: 47px;
   }
 }
+
+@media (min-width: 1200px) {
+  .home-card {
+    flex-direction: row;
+  }
+
+  .home-content-container {
+    align-items: flex-start;
+    text-align: left;
+    flex-flow: wrap;
+    align-content: space-between;
+    padding: 100px 20px;
+  }
+
+  .home-image-container{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .home-image-container svg {
+    width: 100%;
+  }
+}
+
