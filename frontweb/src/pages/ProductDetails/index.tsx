@@ -5,7 +5,7 @@ import ProductPrice from 'components/ProductPrice';
 const ProductDetails = () => {
   return (
     <div className="product-details-container">
-      <div className="card-container">
+      <div className="base-card card-container">
         <div className="goback-container">
             <ArrowIcon />
           <h2>Voltar</h2>
