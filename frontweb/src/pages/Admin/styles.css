@@ -1,9 +1,11 @@
 .admin-container{
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 }
 
 .admin-content{
+    
     padding: 20px;
 }
 
