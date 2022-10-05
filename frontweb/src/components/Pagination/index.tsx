@@ -1,21 +1,18 @@
 import './styles.css';
-import {ReactComponent as ArrowIcon} from 'assets/images/Arrow.svg';
+import { ReactComponent as ArrowIcon } from 'assets/images/Arrow.svg';
 
 const Pagination = () => {
-
-    return (
-        <div className="pagination-container">
-            <ArrowIcon />
-            <div className="pagination-item">1</div>
-            <div className="pagination-item">2</div>
-            <div className="pagination-item">3</div>
-            <div className="pagination-item">4</div>
-            <div className="pagination-item">5</div>
-            <div className="pagination-item">...</div>
-            <div className="pagination-item">10</div>
-            <ArrowIcon />
-        </div>
-    );
-}
+  return (
+    <div className="pagination-container">
+      <ArrowIcon className="arrow-inactive arrow-previous" />
+      <div className="pagination-item active">1</div>
+      <div className="pagination-item">2</div>
+      <div className="pagination-item">3</div>
+      <div className="pagination-item">...</div>
+      <div className="pagination-item">10</div>
+      <ArrowIcon className="arrow-active arrow-next" />
+    </div>
+  );
+};
 
 export default Pagination;
