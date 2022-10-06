@@ -5,13 +5,16 @@ import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
 import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
+import CardLoader from './CardLoader/index';
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const params: AxiosParams = {
@@ -22,9 +25,12 @@ const Catalog = () => {
         size: 12,
       },
     };
+    setIsLoading(true);
 
     axios(params).then((response) => {
       setPage(response.data);
+    }).finally(() => {
+      setIsLoading(false);
     });
   }, []);
 
@@ -34,15 +40,19 @@ const Catalog = () => {
         <h1>Catálogo de produtos</h1>
       </div>
       <div className="row">
-        {page?.content.map((product) => {
-          return (
-            <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
-              <Link to="/products/1">
-                <ProductCard product={product} />
-              </Link>
-            </div>
-          );
-        })}
+        {isLoading ? (
+          < CardLoader />
+        ) : (
+          page?.content.map((product) => {
+            return (
+              <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
+                <Link to="/products/1">
+                  <ProductCard product={product} />
+                </Link>
+              </div>
+            );
+          })
+        )}
       </div>
 
       <div className="row">
