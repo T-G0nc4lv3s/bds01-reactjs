@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from 'components/ButtonIcon';
-import { requestBackendLogin } from 'util/requests';
+import { requestBackendLogin, saveAuthData, getAuthData } from 'util/requests';
 
 type FormData = {
   username: string;
@@ -18,6 +18,10 @@ const LoginCard = () => {
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        saveAuthData(response.data);
+        const token =getAuthData().access_token;
+        console.log("TOKEN GERADO: " + token);
+        
         setHasError(false);
         console.log('SUCESSO', response);
       })
