@@ -3,23 +3,22 @@ import ProductCard from 'components/ProductCard';
 import Pagination from 'components/Pagination';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
-import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
 import CardLoader from './CardLoader/index';
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import axios, { AxiosRequestConfig } from 'axios';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const params: AxiosParams = {
+    const params: AxiosRequestConfig = {
       method: 'GET',
-      url: `${BASE_URL}/products`,
+      url: "/products",
+      baseURL: BASE_URL,
       params: {
         page: 0,
         size: 12,
@@ -27,11 +26,13 @@ const Catalog = () => {
     };
     setIsLoading(true);
 
-    axios(params).then((response) => {
-      setPage(response.data);
-    }).finally(() => {
-      setIsLoading(false);
-    });
+    axios(params)
+      .then((response) => {
+        setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -41,7 +42,7 @@ const Catalog = () => {
       </div>
       <div className="row">
         {isLoading ? (
-          < CardLoader />
+          <CardLoader />
         ) : (
           page?.content.map((product) => {
             return (
