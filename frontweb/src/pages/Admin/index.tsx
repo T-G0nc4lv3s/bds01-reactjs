@@ -1,5 +1,7 @@
-import Navbar from './Navbar';
 import './styles.css';
+import Navbar from './Navbar';
+import Users from './Users';
+
 import { Switch, Route } from 'react-router-dom';
 
 const Admin = () => {
@@ -15,12 +17,11 @@ const Admin = () => {
             <h1>CRUD de categorias</h1>
           </Route>
           <Route path="/admin/users">
-            <h1>CRUD de usuários</h1>
+            <Users />
           </Route>
         </Switch>
       </div>
     </div>
-    
   );
 };
 
