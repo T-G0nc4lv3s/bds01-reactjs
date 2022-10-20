@@ -1,6 +1,6 @@
 import './styles.css';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from 'components/ButtonIcon';
 import { requestBackendLogin, saveAuthData, getAuthData } from 'util/requests';
@@ -15,15 +15,17 @@ const LoginCard = () => {
 
   const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
+  const history = useHistory();
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
         const token =getAuthData().access_token;
         console.log("TOKEN GERADO: " + token);
-        
         setHasError(false);
         console.log('SUCESSO', response);
+        history.push('/admin');
       })
       .catch((error) => {
         setHasError(true);
