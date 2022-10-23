@@ -3,7 +3,9 @@ import { useState, useContext } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from 'components/ButtonIcon';
-import { requestBackendLogin, saveAuthData, getTokenData } from 'util/requests';
+import { requestBackendLogin } from 'util/requests';
+import { getTokenData } from 'util/auth';
+import { saveAuthData } from 'util/storage';
 import {AuthContext} from 'AuthContext';
 
 type FormData = {
