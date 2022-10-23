@@ -4,6 +4,7 @@ import Users from './Users';
 
 import { Switch } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
+
 const Admin = () => {
   return (
     <div className="admin-container">
@@ -16,7 +17,7 @@ const Admin = () => {
           <PrivateRoute path="/admin/categories">
             <h1>CRUD de categorias</h1>
           </PrivateRoute>
-          <PrivateRoute path="/admin/users">
+          <PrivateRoute path="/admin/users" roles={['ROLE_ADMIN']}>
             <Users />
           </PrivateRoute>
         </Switch>
