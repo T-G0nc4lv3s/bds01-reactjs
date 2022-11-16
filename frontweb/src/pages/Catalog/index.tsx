@@ -3,13 +3,11 @@ import ProductCard from 'components/ProductCard';
 import Pagination from 'components/Pagination';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/requests';
 import CardLoader from './CardLoader/index';
-
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import { requestBackend } from './../../util/requests';
+import { requestBackend } from 'util/requests';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
@@ -18,7 +16,7 @@ const Catalog = () => {
   useEffect(() => {
     const params: AxiosRequestConfig = {
       method: 'GET',
-      url: "/products",
+      url: '/products',
       params: {
         page: 0,
         size: 12,
@@ -27,7 +25,7 @@ const Catalog = () => {
     setIsLoading(true);
 
     requestBackend(params)
-      .then(response => {
+      .then((response) => {
         setPage(response.data);
       })
       .finally(() => {
