@@ -1,0 +1,10 @@
+.product-crud-card-form{
+    padding: 20px;
+}
+
+.product-crud-card-title {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  color: #263238;
+}
