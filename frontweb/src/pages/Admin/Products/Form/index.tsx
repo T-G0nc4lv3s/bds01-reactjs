@@ -1,5 +1,5 @@
 import './styles.css';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Product } from 'types/product';
 import { requestBackend } from 'util/requests';
 import { AxiosRequestConfig } from 'axios';
@@ -13,7 +13,6 @@ type UrlParams = {
 };
 
 const Form = () => {
-  
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
   const { productId } = useParams<UrlParams>();
@@ -27,6 +26,7 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
   } = useForm<Product>();
 
   useEffect(() => {
@@ -100,13 +100,28 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
-                <Select
-                  options={selectCategories}
-                  isMulti
-                  classNamePrefix="product-crud-select"
-                  getOptionLabel={(category: Category) => category.name}
-                  getOptionValue={(category: Category) => String(category.id)}
+                <Controller
+                  name="categories"
+                  rules={{ required: true }}
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={selectCategories}
+                      isMulti
+                      classNamePrefix="product-crud-select"
+                      getOptionLabel={(category: Category) => category.name}
+                      getOptionValue={(category: Category) =>
+                        String(category.id)
+                      }
+                    />
+                  )}
                 />
+                {errors.categories && (
+                  <div className="invalid-feedback d-block">
+                    Campo obrigatório
+                  </div>
+                )}
               </div>
 
               <div className="margin-bottom-30">
