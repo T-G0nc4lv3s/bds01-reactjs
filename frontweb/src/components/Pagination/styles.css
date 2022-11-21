@@ -25,18 +25,25 @@
   background-color: #407bff;
 }
 
+.pagination-link-active {
+  background-color: #407bff;
+}
+
 .arrow-inactive {
-  color: rgba(225, 225, 225, 1);
+  color: #e1e1e1;
+  display: none;
 }
 
 .arrow-active {
-  color: rgba(64, 123, 255, 1);
+  color: #407bff;
 }
 
 .arrow-previous {
   transform: rotate(-180deg);
+  color: #407bff;
 }
 
 .arrow-next {
   margin-left: 10px;
+  color: #407bff;
 }
