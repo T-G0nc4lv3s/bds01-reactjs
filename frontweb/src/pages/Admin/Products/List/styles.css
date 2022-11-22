@@ -1,5 +1,5 @@
-.product-crud-container{
-    max-width: 960px;
+.product-crud-container {
+  max-width: 960px;
 }
 
 .btn-crud-add {
@@ -12,22 +12,12 @@
   margin-bottom: 20px;
 }
 
-.product-filter-container{
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-
-@media(min-width: 768px){
-    .product-crud-bar-container{
-        display: flex;
-    }
-    .btn-crud-add{
-        height: 60px;
-        margin-bottom: 0;
-    }
-    .product-filter-container{
-        margin-left: 20px;
-        flex: 1;
-    }
+@media (min-width: 768px) {
+  .product-crud-bar-container {
+    display: flex;
+  }
+  .btn-crud-add {
+    height: 60px;
+    margin-bottom: 0;
+  }
 }
