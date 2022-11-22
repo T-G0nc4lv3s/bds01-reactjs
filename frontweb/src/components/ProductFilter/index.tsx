@@ -1,11 +1,17 @@
 import './styles.css';
+import { ReactComponent as SearchIcon } from 'assets/images/Union.svg';
 
 const ProductFilter = () => {
   return (
     <div className="base-card product-filter-container">
       <form action="" className="product-filter-form">
         <div className="product-filter-name-container">
-          <input className="form-control" type="text" />
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Nome do produto"
+          />
+          <SearchIcon />
         </div>
         <div className="product-filter-bottom-container">
           <div className="product-filter-category-container">
