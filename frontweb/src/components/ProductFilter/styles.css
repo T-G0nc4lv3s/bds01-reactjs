@@ -75,5 +75,26 @@
   .product-filter-container {
     margin-left: 20px;
     flex: 1;
+    padding: 10px 15px;
+  }
+  .product-filter-form {
+    display: flex;
+  }
+  .product-filter-name-container {
+    flex: 1;
+    margin: 0;
+    margin-right: 20px;
+  }
+  .product-filter-bottom-container {
+    flex: 1;
+  }
+  .btn-product-filter-word {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .btn-product-filter-word {
+    display: unset;
   }
 }
