@@ -4,7 +4,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from 'components/ButtonIcon';
 import { requestBackendLogin } from 'util/requests';
-import { getTokenData } from 'util/auth';
+import { getTokenData } from 'util/token';
 import { saveAuthData } from 'util/storage';
 import {AuthContext} from 'AuthContext';
 

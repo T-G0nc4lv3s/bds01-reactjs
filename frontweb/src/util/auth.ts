@@ -1,21 +1,5 @@
-import jwtDecode from 'jwt-decode';
-import { getAuthData } from 'util/storage';
-
-export type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
-
-export type tokenData = {
-  exp: number;
-  user_name: string;
-  authorities: Role[];
-};
-
-export const getTokenData = (): tokenData | undefined => {
-  try {
-    return jwtDecode(getAuthData().access_token) as tokenData;
-  } catch (error) {
-    return undefined;
-  }
-};
+import { getTokenData } from 'util/token';
+import { Role } from 'types/role';
 
 export const isAuthenticated = (): boolean => {
   const tokenData = getTokenData();

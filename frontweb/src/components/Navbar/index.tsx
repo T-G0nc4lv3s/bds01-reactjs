@@ -1,6 +1,7 @@
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
-import { isAuthenticated, getTokenData } from 'util/auth';
+import { isAuthenticated } from 'util/auth';
+import { getTokenData } from 'util/token';
 import { removeAuthData } from 'util/storage';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
