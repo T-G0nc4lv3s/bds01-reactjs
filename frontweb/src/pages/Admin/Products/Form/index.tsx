@@ -95,6 +95,7 @@ const Form = () => {
                   }`}
                   placeholder="Nome do produto"
                   name="name"
+                  data-testid="name"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.name?.message}
@@ -129,11 +130,13 @@ const Form = () => {
               <div className="margin-bottom-30">
                 <Controller
                   name="price"
+                  
                   rules={{ required: 'Campo obrigatório' }}
                   control={control}
                   render={({ field }) => (
                     <CurrencyInput
                       placeholder="Preço"
+                      data-testid="price"
                       className={`form-control base-input ${
                         errors.name ? 'is-invalid' : ''
                       }`}
@@ -162,6 +165,7 @@ const Form = () => {
                   }`}
                   placeholder="URL da imagem"
                   name="imgUrl"
+                  data-testid="imgUrl"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.imgUrl?.message}
@@ -180,7 +184,11 @@ const Form = () => {
                   }`}
                   placeholder="Descrição"
                   name="description"
+                  data-testid="description"
                 />
+                <div className="invalid-feedback d-block">
+                  {errors.description?.message}
+                </div>
               </div>
             </div>
           </div>
