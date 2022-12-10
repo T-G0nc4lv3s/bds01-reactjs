@@ -103,6 +103,7 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
+                <label htmlFor="categories" className="d-none">Categorias</label>
                 <Controller
                   name="categories"
                   rules={{ required: true }}
@@ -114,9 +115,8 @@ const Form = () => {
                       isMulti
                       classNamePrefix="product-crud-select"
                       getOptionLabel={(category: Category) => category.name}
-                      getOptionValue={(category: Category) =>
-                        String(category.id)
-                      }
+                      getOptionValue={(category: Category) => String(category.id)}
+                      inputId="categories"
                     />
                   )}
                 />
@@ -130,7 +130,6 @@ const Form = () => {
               <div className="margin-bottom-30">
                 <Controller
                   name="price"
-                  
                   rules={{ required: 'Campo obrigatório' }}
                   control={control}
                   render={({ field }) => (
