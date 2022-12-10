@@ -3,7 +3,13 @@ import Form from '../Form';
 import { Router } from 'react-router-dom';
 import history from 'util/history';
 import { useParams } from 'react-router-dom';
-import  userEvent  from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
+import { server } from './fixtures';
+import selectEvent from 'react-select-event';
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -17,7 +23,7 @@ describe('Product form create tests', () => {
     });
   });
 
-  test('should render Form', () => {
+  test('should render Form', async () => {
     render(
       <Router history={history}>
         <Form />
@@ -32,7 +38,12 @@ describe('Product form create tests', () => {
 
     userEvent.type(nameInput, 'computador');
     userEvent.type(priceInput, '5000.12');
-    userEvent.type(imgUrlInput, 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg');
+    userEvent.type(
+      imgUrlInput,
+      'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg'
+    );
     userEvent.type(descriptionInput, 'muito bom');
+
+    await selectEvent.select(categoriesInput, ['Eletrônicos', 'Computadores']);
   });
 });
