@@ -35,6 +35,9 @@ describe('Product form create tests', () => {
     const imgUrlInput = screen.getByTestId('imgUrl');
     const descriptionInput = screen.getByTestId('description');
     const categoriesInput = screen.getByLabelText('Categorias');
+    const submitButton = screen.getByRole('button', {name: /salvar/i});
+
+    await selectEvent.select(categoriesInput, ['Eletrônicos', 'Computadores']);
 
     userEvent.type(nameInput, 'computador');
     userEvent.type(priceInput, '5000.12');
@@ -44,6 +47,6 @@ describe('Product form create tests', () => {
     );
     userEvent.type(descriptionInput, 'muito bom');
 
-    await selectEvent.select(categoriesInput, ['Eletrônicos', 'Computadores']);
+    userEvent.click(submitButton);
   });
 });
