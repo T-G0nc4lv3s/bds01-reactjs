@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Form from '../Form';
 import { Router } from 'react-router-dom';
 import history from 'util/history';
@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { server } from './fixtures';
 import selectEvent from 'react-select-event';
+import { ToastContainer } from 'react-toastify';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
@@ -26,6 +27,7 @@ describe('Product form create tests', () => {
   test('should render Form', async () => {
     render(
       <Router history={history}>
+        <ToastContainer />
         <Form />
       </Router>
     );
@@ -35,7 +37,7 @@ describe('Product form create tests', () => {
     const imgUrlInput = screen.getByTestId('imgUrl');
     const descriptionInput = screen.getByTestId('description');
     const categoriesInput = screen.getByLabelText('Categorias');
-    const submitButton = screen.getByRole('button', {name: /salvar/i});
+    const submitButton = screen.getByRole('button', { name: /salvar/i });
 
     await selectEvent.select(categoriesInput, ['Eletrônicos', 'Computadores']);
 
@@ -48,5 +50,10 @@ describe('Product form create tests', () => {
     userEvent.type(descriptionInput, 'muito bom');
 
     userEvent.click(submitButton);
+
+    await waitFor(() => {
+      const toastElement = screen.getByText('Produto cadastrado com sucesso');
+      expect(toastElement).toBeInTheDocument();
+    });
   });
 });
