@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import Form from '../Form';
 import { Router } from 'react-router-dom';
 import history from 'util/history';
@@ -94,22 +94,26 @@ describe('Product form create tests', () => {
       expect(messages).toHaveLength(5);
     });
 
+    await act(async () => {
+      const nameInput = screen.getByTestId('name');
+      const priceInput = screen.getByTestId('price');
+      const imgUrlInput = screen.getByTestId('imgUrl');
+      const descriptionInput = screen.getByTestId('description');
+      const categoriesInput = screen.getByLabelText('Categorias');
 
-    const nameInput = screen.getByTestId('name');
-    const priceInput = screen.getByTestId('price');
-    const imgUrlInput = screen.getByTestId('imgUrl');
-    const descriptionInput = screen.getByTestId('description');
-    const categoriesInput = screen.getByLabelText('Categorias');
+      await selectEvent.select(categoriesInput, [
+        'Eletrônicos',
+        'Computadores',
+      ]);
 
-    await selectEvent.select(categoriesInput, ['Eletrônicos', 'Computadores']);
-
-    userEvent.type(nameInput, 'computador');
-    userEvent.type(priceInput, '5000.12');
-    userEvent.type(
-      imgUrlInput,
-      'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg'
-    );
-    userEvent.type(descriptionInput, 'muito bom');
+      userEvent.type(nameInput, 'computador');
+      userEvent.type(priceInput, '5000.12');
+      userEvent.type(
+        imgUrlInput,
+        'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg'
+      );
+      userEvent.type(descriptionInput, 'muito bom');
+    });
 
     await waitFor(() => {
       const messages = screen.queryAllByText('Campo obrigatório');
